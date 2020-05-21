@@ -1,0 +1,30 @@
+body{
+  margin-left: 0px;
+  margin-top: 0px;
+}
+#leftsidebar
+{
+  width: auto;
+  float: left;
+  margin-left: 0px;
+  min-height: 100%;
+  background-color: #b4b4b4;
+}
+
+#leftsidebar ul
+{
+  padding-inline-start: 0px;
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  list-style-type: none;
+}
+
+#leftsidebar li a
+{
+  display-style: block;
+}
+
+#leftsidebar #sidebar_title{
+  font-size: 25px;
+}

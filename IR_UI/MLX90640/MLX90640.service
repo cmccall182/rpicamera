@@ -1,0 +1,11 @@
+[Unit]
+Description=MLX90640. MLX90640 service
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/MLX90640
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target

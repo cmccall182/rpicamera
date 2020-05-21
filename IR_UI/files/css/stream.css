@@ -1,0 +1,16 @@
+#info_and_stream
+{
+  text-align: center;
+  background-color: #c9c9c9;
+}
+
+#info_and_stream #image_Manipulate
+{
+  text-align: center;
+}
+
+#info_and_stream #image_Manipulate #streamframe
+{
+  width: 240px;
+  height: 320px;
+}
