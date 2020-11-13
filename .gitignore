@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 
 #VS files
-./vs
+.vs/
 
 #IR files
 *.csv
