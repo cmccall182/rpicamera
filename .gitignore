@@ -135,4 +135,5 @@ dmypy.json
 *.csv
 
 #camera files
-#.jpeg
+.jpeg
+/test_images

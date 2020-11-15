@@ -1,9 +1,11 @@
+/* eslint-disable import/no-unresolved */
 import { combineReducers } from 'redux';
-// eslint-disable-next-line import/no-unresolved
 import navbar from 'app/navigation/store/reducers/navbar.reducer';
+import recipe from 'app/main/Recipes/store/reducers/recipes.reducer';
 
 const createReducer = (asyncReducers) => combineReducers({
   navbar,
+  recipe,
   ...asyncReducers,
 });
 

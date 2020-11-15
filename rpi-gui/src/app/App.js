@@ -15,7 +15,7 @@ const App = () => {
      <Switch>
         {Routes.map((route) => (
           <Route exact path={route.path} key={route.path}>
-              <route.component className="content"/>
+              <route.component />
           </Route>
         ))}
         </Switch>

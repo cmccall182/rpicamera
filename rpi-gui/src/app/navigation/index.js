@@ -13,18 +13,18 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
 import Routes from '../Routes';
-
-const drawerWidth = 240;
-const closedDrawerWidth = 60;
+import { DRAWER_WIDTH, CLOSED_DRAWER_WIDTH } from '../constants/index';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
   appBar: {
+    background: 'white',
     padding: theme.spacing(0, 1),
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
@@ -33,28 +33,29 @@ const useStyles = makeStyles((theme) => ({
     height: '5rem',
   },
   appBarShift: {
-    marginLeft: drawerWidth - closedDrawerWidth,
+    marginLeft: DRAWER_WIDTH - CLOSED_DRAWER_WIDTH,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
   appBarContent: {
-    marginLeft: closedDrawerWidth,
+    color: 'black',
+    marginLeft: CLOSED_DRAWER_WIDTH,
   },
   menuButton: {
-    marginRight: 0,
+    marginRight: 10,
   },
   hide: {
     display: 'none',
   },
   drawer: {
-    width: drawerWidth,
+    width: DRAWER_WIDTH,
     flexShrink: 0,
     whiteSpace: 'nowrap',
   },
   drawerOpen: {
-    width: drawerWidth,
+    width: DRAWER_WIDTH,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -71,7 +72,11 @@ const useStyles = makeStyles((theme) => ({
       width: theme.spacing(9) + 1,
     },
   },
+  drawerPaper: {
+    border: 0,
+  },
   toolbar: {
+    background: '#192d3e',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
@@ -82,6 +87,10 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
+  },
+  navItem: {
+    textDecoration: 'none',
+    color: 'black',
   },
 }));
 
@@ -97,10 +106,6 @@ const NavigationBar = (props) => {
 
   const handleDrawerClose = () => {
     dispatch({ type: 'TOGGLE_NAVBAR' });
-  };
-
-  const activeRoute = (routeName) => {
-    return props.location.pathname === routeName;
   };
 
   return (
@@ -125,7 +130,7 @@ const NavigationBar = (props) => {
           [classes.drawerClose]: !open,
         })}
         classes={{
-          paper: clsx({
+          paper: clsx(classes.drawerPaper, {
             [classes.drawerOpen]: open,
             [classes.drawerClose]: !open,
           }),
@@ -153,9 +158,10 @@ const NavigationBar = (props) => {
         </div>
         <List>
           {Routes.map((route) => (
-            <NavLink to={route.path}>
-              <ListItem selected={activeRoute(props.path)} key={route.path}>
-                <ListItemText primary={route.navigationName} />
+            <NavLink to={route.path} className={classes.navItem}>
+              <ListItem button selected={props.location.pathname === route.path} key={route.path}>
+                <ListItemIcon>{route.navIcon}</ListItemIcon>
+                <ListItemText className={classes.navItem} primary={route.navigationName} />
               </ListItem>
             </NavLink>
           ))}
