@@ -9,7 +9,7 @@ import traceback
 import logging
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 app.config['CORS_HEADERS'] = 'AcceptContent-Type'
 
 def crossdomain(origin=None, methods=None, headers=None,
@@ -69,7 +69,7 @@ def camera_stream():
         app.logger(traceback.format_exc())
 
 
-@app.route('/camera', methods=['GET', 'OPTIONS'])
+@app.route('/fridge.jpg', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*', headers=['Content-Type'])
 def get_fridge_camera():
     try:
@@ -79,7 +79,6 @@ def get_fridge_camera():
             raise Exception('Unhandled')
     except:
         app.logger(traceback.format_exc())
-
 
 @app.route('/recipes', methods=['POST', 'OPTIONS'])
 @crossdomain(origin='*', headers=['Content-Type'])

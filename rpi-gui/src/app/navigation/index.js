@@ -44,7 +44,9 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: CLOSED_DRAWER_WIDTH,
   },
   menuButton: {
-    marginRight: 10,
+    marginRight: 5,
+    marginLeft: 10,
+    color: 'white',
   },
   hide: {
     display: 'none',
@@ -74,6 +76,10 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     border: 0,
+    background: 'black',
+  },
+  collapseButton: {
+    color: 'white',
   },
   toolbar: {
     background: '#192d3e',
@@ -88,9 +94,16 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  navBar: {
+    background: 'black',
+  },
   navItem: {
     textDecoration: 'none',
-    color: 'black',
+    color: 'white',
+  },
+  navIcon: {
+    marginLeft: 10,
+    color: 'white',
   },
 }));
 
@@ -138,7 +151,7 @@ const NavigationBar = (props) => {
       >
         <div className={classes.toolbar}>
           <IconButton
-            className={clsx({
+            className={clsx(classes.collapseButton, {
               [classes.hide]: !open,
             })}
             onClick={handleDrawerClose}
@@ -156,11 +169,11 @@ const NavigationBar = (props) => {
             <MenuIcon />
           </IconButton>
         </div>
-        <List>
+        <List className={classes.navBar}>
           {Routes.map((route) => (
-            <NavLink to={route.path} className={classes.navItem}>
+            <NavLink key={route.path} to={route.path} className={classes.navItem}>
               <ListItem button selected={props.location.pathname === route.path} key={route.path}>
-                <ListItemIcon>{route.navIcon}</ListItemIcon>
+                <ListItemIcon className={classes.navIcon}>{route.navIcon}</ListItemIcon>
                 <ListItemText className={classes.navItem} primary={route.navigationName} />
               </ListItem>
             </NavLink>

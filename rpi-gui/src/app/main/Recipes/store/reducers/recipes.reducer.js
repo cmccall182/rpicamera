@@ -11,12 +11,13 @@ const reducer = (recipes = initialState, action) => {
       return recipes.merge({
         isFetched: true,
         isFetching: false,
+        isError: false,
         baseIngredients: action.payLoad?.recipe,
       });
     case Constants.RECIPE_FETCHING:
       return recipes.merge({ isFetching: true });
     case Constants.RECIPE_ERROR:
-      return recipes.merge({ isError: true });
+      return recipes.merge({ isError: true, isFetching: false });
     default:
       return recipes;
   }

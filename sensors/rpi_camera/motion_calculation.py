@@ -1,7 +1,7 @@
 import cv2
 import imutils
 import numpy as np
-   
+
 class motionDetect():
     def __init__(self):
         self.last_capture = None

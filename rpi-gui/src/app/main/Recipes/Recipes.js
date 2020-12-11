@@ -27,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  recipeInput: {
+    width: '25%',
+  },
 }));
 
 const RecipePage = (props) => {
@@ -51,14 +54,13 @@ const RecipePage = (props) => {
     <div>
       <main className={classes.content}>
         <div className={open ? classes.shiftContentRight : classes.shiftContentLeft}>
-          <div className={classes.toolbar} />
           <form className={classes.root} noValidate autoComplete="off">
-            <TextField id="standard-basic" label="Recipe URL" value={recipe.recipeUrl} onChange={(e) => handleRecipeSelect(e)} />
-            <Button variant="contained" color="Primary" onClick={handleRecipeSubmit}>Submit</Button>
+            <TextField className={classes.recipeInput} id="standard-basic" label="Recipe URL" value={recipe.recipeUrl} onChange={(e) => handleRecipeSelect(e)} />
+            <Button variant="contained" onClick={handleRecipeSubmit}>Submit</Button>
           </form>
           {!recipe.isError
             && recipe.isFetched
-            ? (
+            && (
               <List>
                 {recipe.baseIngredients.map((ingredient) => (
                   <ListItem>
@@ -66,9 +68,10 @@ const RecipePage = (props) => {
                   </ListItem>
                 ))}
               </List>
-            ) : (
-              <Typography>Error fetching recipe</Typography>
             )}
+          {recipe.isError && (
+            <Typography>Error fetching recipe</Typography>
+          )}
           {recipe.isFetching && (<CircularProgress />) }
         </div>
       </main>
